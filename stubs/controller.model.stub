@@ -1,0 +1,54 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ namespacedModel }};
+use {{ rootNamespace }}Http\Controllers\Controller;
+use {{ namespacedRequests }}
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+
+
+class {{ class }} extends Controller
+{
+
+    public function index() : View
+    {
+        return view('admins.{{modelVariable}}s.index', ['{{modelVariable}}s' => {{ model }}::get()]);
+    }
+
+
+    public function create() : View
+    {
+        return view('admins.{{modelVariable}}s.create');
+    }
+
+
+    public function store({{ storeRequest }} $request) : RedirectResponse
+    {
+        return redirect()->route('{{ modelVariable }}s.index');
+    }
+
+
+    public function show({{ model }} ${{ modelVariable }}) : View
+    {
+         return view('admins.{{modelVariable}}s.show', compact('{{modelVariable}}'));
+    }
+
+    public function edit({{ model }} ${{ modelVariable }}) : View
+    {
+         return view('admins.{{modelVariable}}s.edit', compact('{{modelVariable}}'));
+    }
+
+
+    public function update({{ updateRequest }} $request, {{ model }} ${{ modelVariable }}) : RedirectResponse
+    {
+        return redirect()->route('{{ modelVariable }}s.index');
+    }
+
+
+    public function destroy({{ model }} ${{ modelVariable }}) : RedirectResponse
+    {
+        return redirect()->route('{{ modelVariable }}s.index');
+    }
+}
